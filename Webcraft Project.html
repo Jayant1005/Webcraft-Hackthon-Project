@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GetSkills</title>
+    <style>
+      /* Global Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #e0f7fa;
+        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      }
+
+      /* Header Styles */
+      header {
+        background: linear-gradient(90deg, #031303, #2e7d32);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+      }
+      nav ul li {
+        margin-left: 20px;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+        transition: background 0.3s, color 0.3s;
+        border-radius: 5px;
+      }
+      nav a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1); /* Slightly enlarges links on hover */
+      }
+
+      /* Hero Section */
+      .hero {
+        position: relative;
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+        animation: fadeInSlide 1s ease-in-out;
+      }
+      .hero video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hero h1,
+      .hero p {
+        position: relative;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 5px;
+        animation: fadeInUp 1s ease-in-out;
+      }
+      .hero h1 {
+        font-size: 3em;
+      }
+      .hero p {
+        font-size: 1.5em;
+      }
+
+      /* Keyframes for Animations */
+      @keyframes fadeInSlide {
+        0% {
+          transform: translateY(-40px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Courses Section */
+      .courses {
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .courses h2 {
+        margin-bottom: 40px;
+        animation: fadeInSlide 0.8s ease-in-out;
+      }
+      .course-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        animation: fadeInUp 1.2s ease-in-out;
+      }
+      .course-item {
+        margin: 20px;
+        text-align: center;
+        flex: 1 1 300px;
+      }
+      .course-box {
+        border: 2px solid #4caf50;
+        border-radius: 10px;
+        padding: 20px;
+        background: #f9f9f9;
+        transition: transform 0.3s, box-shadow 0.3s;
+        will-change: transform; /* Optimizes the animation */
+      }
+      .course-box:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-5px) scale(1.05); /* Enhances hover effect */
+      }
+      .course-button {
+        background-color: #4caf50;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+      .course-button:hover {
+        background-color: #388e3c;
+        transform: scale(1.05); /* Enlarge button on hover */
+      }
+
+      /* About and Contact Section */
+      .about {
+        padding: 40px 20px;
+        text-align: center;
+        background: #f9f9f9;
+        border-top: 2px solid #4caf50;
+      }
+      .about h2,
+      .about p {
+        animation: fadeInSlide 0.8s ease-in-out;
+      }
+
+      /* Footer Styles */
+      footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+      footer ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      footer ul li {
+        margin: 0 10px;
+      }
+      footer a {
+        color: white;
+        text-decoration: none;
+      }
+      footer p {
+        animation: fadeInUp 1s ease-in-out;
+      }
+    
+    </style>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      function showAlert(courseName) {
+        alert("You clicked on " + courseName);
+      }
+
+      function handleMouseMove(event) {
+        const box = event.currentTarget;
+        const { width, height, left, top } = box.getBoundingClientRect();
+        const x = event.clientX - left;
+        const y = event.clientY - top;
+        const xPercent = (x / width) * 100;
+        const yPercent = (y / height) * 100;
+        const tiltX = (yPercent - 50) * -0.2;
+        const tiltY = (xPercent - 50) * 0.2;
+        box.style.transform = `perspective(300px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      }
+
+      function handleMouseLeave(event) {
+        const box = event.currentTarget;
+        box.style.transform = "perspective(300px) rotateX(0deg) rotateY(0deg)";
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>GetSkills</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero"  style="font-weight: 400;" style= "font-family: 'Times New Roman';">
+      <!-- <video autoplay muted loop>
+            <source src="C:/WD/Untitled design.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video> -->
+      <h1 style="color: aliceblue; " >Welcome to GetSkills</h1>
+      <p style="color: aliceblue;" style="font-size: 3rem;">Your gateway to learning new skills.</p>
+    </section>
+
+    <section id="courses" class="courses" style="background-color: rgb(52, 147, 225);">
+
+      <h2>Available Courses</h2>
+      <div class="course-container">
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button
+              class="course-button"
+              onclick="showAlert('Web Development')"
+            >
+              Web Development
+            </button>
+            <p>
+              Learn the basics of web development with HTML, CSS, and
+              JavaScript.
+            </p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button class="course-button" onclick="showAlert('Data Science')">
+              Data Science
+            </button>
+            <p>Discover data analysis, visualization, and machine learning.</p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button class="course-button" onclick="showAlert('Graphic Design')">
+              Graphic Design
+            </button>
+            <p>
+              Enhance your design skills with Adobe Photoshop and Illustrator.
+            </p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button
+              class="course-button"
+              onclick="showAlert('Digital Marketing')"
+            >
+              Digital Marketing
+            </button>
+            <p>Master SEO, social media marketing, and content strategy.</p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button
+              class="course-button"
+              onclick="showAlert('Machine Learning')"
+            >
+              Machine Learning
+            </button>
+            <p>
+              Dive into algorithms, data modeling, and predictive analytics.
+            </p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button class="course-button" onclick="showAlert('Photography')">
+              Photography
+            </button>
+            <p>Learn techniques for capturing stunning images and editing.</p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button
+              class="course-button"
+              onclick="showAlert('Mobile App Development')"
+            >
+              Mobile App Development
+            </button>
+            <p>Create apps for Android and iOS using modern frameworks.</p>
+          </div>
+        </div>
+        <div class="course-item">
+          <div
+            class="course-box"
+            onMouseMove="handleMouseMove(event)"
+            onMouseLeave="handleMouseLeave(event)"
+          >
+            <button class="course-button" onclick="showAlert('Cybersecurity')">
+              Cybersecurity
+            </button>
+            <p>Understand the principles of securing networks and systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <h2>About GetSkills</h2>
+      <p>
+        Welcome to GetSkills, your gateway to learning new skills and expanding your horizons! 
+        Our mission is to empower individuals from all backgrounds to enhance their knowledge and expertise through accessible online education. 
+      </p>
+      <p>
+        At GetSkills, we believe that learning should be a lifelong journey. 
+        We offer a diverse range of courses, from coding and design to personal development and business skills. 
+        Our platform is designed for everyone, whether you’re a beginner looking to explore a new hobby or a professional aiming to advance your career.
+      </p>
+      <p>
+        Our team of experienced instructors is dedicated to providing high-quality content that is both engaging and informative. 
+        With interactive lessons, real-world projects, and a supportive community, you’ll gain practical skills that you can apply immediately.
+      </p>
+      <p>
+        Join us today and start your journey towards personal and professional growth with GetSkills. 
+        Let's unlock your potential together!
+      </p>
+    </section>
+    
+
+    <section id="contact" class="about">
+      <h2>Contact Us</h2>
+      <p style="font-family: 'Times New Roman';">Jayant Solao - 94XXXXXX14<br />Harshal Dhumne - 93XXXXXX45</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 GetSkills. All rights reserved.</p>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
