@@ -1,0 +1,311 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Times New Roman';
+  line-height: 1.6;
+  background-color: #e0f7fa;
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Logo Styles */
+.logo h1 {
+  font-family: "Times New Roman"; /* Times New Roman font */
+  font-weight: bold; /* Bold font */
+  font-size: 2em; /* Adjust font size as per preference */
+  margin-right: auto; /* Pushes the logo to the left */
+  color: white; /* Logo text color */
+}
+
+/* Updated Header Flexbox Styles */
+header {
+  background: linear-gradient(90deg, #031303, #2e7d32);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between; /* Ensures proper spacing between logo and nav */
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1); /* Slightly enlarges links on hover */
+}
+
+/* Hero Section */
+.hero {
+  background-image: url('radek-grzybowski-eBRTYyjwpRY-unsplash.jpg');
+  position: relative;
+  color: rgb(0, 0, 0);
+  padding: 80px 20px;
+  text-align: center;
+  animation: fadeInSlide 1s ease-in-out;
+  overflow: hidden;
+  height: 100vh; /* Full screen height */
+  background-size: cover; /* Ensures the image covers the entire section */
+  background-position: center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+}
+
+.hero h1,
+.hero p {
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  border-radius: 10px;
+  animation: fadeInUp 1s ease-in-out;
+  background: none;
+}
+
+/* Animation for Welcome to GetSkills */
+.hero h1 {
+  font-size: 3em;
+  animation: textScaleUp 2s ease-in-out forwards; /* Scale up animation */
+  transform-origin: center;
+  opacity: 0; /* Start invisible */
+  animation-delay: 0.5s; /* Delays animation by half a second */
+}
+
+/* Animation for Your gateway to learning new skills */
+.hero p {
+  font-size: 1.5em;
+  margin-top: 10px;
+  opacity: 0; /* Start invisible */
+  animation: fadeIn 2s ease-in-out forwards;
+  animation-delay: 1.5s; /* Delays animation after h1 */
+}
+
+/* Keyframes for Scaling Animation (Welcome to GetSkills) */
+@keyframes textScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8); /* Start smaller */
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); /* Slightly larger */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* Back to normal size */
+  }
+}
+
+/* Keyframes for Fade-in Animation (Your gateway to learning new skills) */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px); /* Start slightly below */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at the original position */
+  }
+}
+
+/* Keyframes for general fade-in and slide-up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Courses Section */
+.courses {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.courses h2 {
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  animation: fadeInSlide 0.8s ease-in-out;
+}
+
+.course-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+.course-item {
+  margin: 20px;
+  text-align: center;
+  flex: 1 1 300px;
+  max-width: 300px; /* Restrict maximum size on large screens */
+}
+
+.course-box {
+  border: 2px solid #0e120e;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f9f9f9;
+  transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform, box-shadow;
+}
+
+.course-box:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px) scale(1.05);
+}
+
+.course-button {
+  background-color: #171c17;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.course-button:hover {
+  background-color: #181c18;
+  transform: scale(1.05); /* Enlarge button on hover */
+}
+
+.about {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f9f9f9; /* Light background for better readability */
+  border-top: 2px solid #191f1a; /* Subtle top border */
+}
+
+.about h2 {
+  font-family: 'Times New Roman';
+  font-size: 2.5em;
+  margin-bottom: 20px; /* Space between heading and text */
+  color: #333; /* Dark text for good contrast */
+}
+
+.about p {
+  font-size: larger;
+  font-weight: 300;
+  font-family: 'Times New Roman';
+  font-size: 1.2em; /* Increased font size for readability */
+  line-height: 1.8; /* Better line spacing */
+  max-width: 800px; /* Maximum width for text */
+  margin: 0 auto; /* Center the text block */
+  padding: 20px; /* Padding for better layout */
+  color: #555; /* Slightly lighter color for body text */
+}
+
+
+/* Footer Styles */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+footer ul li {
+  margin: 0 10px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #1a201a;
+}
+
+footer p {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .hero h1 {
+    font-size: 2.5em;
+  }
+
+  .hero p {
+    font-size: 1.2em;
+  }
+
+  .courses h2 {
+    font-size: 2em;
+  }
+
+  .course-box {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2em;
+  }
+
+  .hero p {
+    font-size: 1em;
+  }
+
+  .course-box {
+    padding: 10px;
+  }
+
+  .course-button {
+    padding: 10px 15px;
+  }
+
+  .courses h2,
+  .about h2 {
+    font-size: 1.8em;
+  }
+}
